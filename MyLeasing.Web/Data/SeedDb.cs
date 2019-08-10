@@ -1,61 +1,123 @@
-﻿using MyLeasing.Web.Data.Entities;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MyLeasing.Web.Data.Entities;
+using MyLeasing.Web.Helpers;
 
 namespace MyLeasing.Web.Data
 {
     public class SeedDb
     {
         private readonly DataContext _context;
+        private readonly IUserHelper _userHelper;
 
-        public SeedDb(DataContext context)
+        public SeedDb(
+            DataContext context,
+            IUserHelper userHelper)
         {
             _context = context;
+            _userHelper = userHelper;
         }
 
         public async Task SeedAsync()
         {
             await _context.Database.EnsureCreatedAsync();
+            await CheckRoles();
+            var manager = await CheckUserAsync("1010", "Juan", "Zuluaga", "jzuluaga55@gmail.com", "350 634 2747", "Calle Luna Calle Sol", "Manager");
+            var owner = await CheckUserAsync("2020", "Juan", "Zuluaga", "jzuluaga55@hotmail.com", "350 634 2747", "Calle Luna Calle Sol", "Owner");
+            var lessee = await CheckUserAsync("3030", "Juan", "Zuluaga", "carlos.zuluaga@globant.com", "350 634 2747", "Calle Luna Calle Sol", "Lessee");
             await CheckPropertyTypesAsync();
-            await CheckOwnersAsync();
-            await CheckLesseesAsync();
+            await CheckManagerAsync(manager);
+            await CheckOwnersAsync(owner);
+            await CheckLesseesAsync(lessee);
             await CheckPropertiesAsync();
+            await CheckContractsAsync();
         }
 
-        private async Task CheckPropertyTypesAsync()
+        private async Task CheckContractsAsync()
         {
-            if (!_context.PropertyTypes.Any())
+            var owner = _context.Owners.FirstOrDefault();
+            var lessee = _context.Lessees.FirstOrDefault();
+            var property = _context.Properties.FirstOrDefault();
+            if (!_context.Contracts.Any())
             {
-                _context.PropertyTypes.Add(new Entities.PropertyType { Name = "Apartamento" });
-                _context.PropertyTypes.Add(new Entities.PropertyType { Name = "Casa" });
-                _context.PropertyTypes.Add(new Entities.PropertyType { Name = "Negocio" });
+                _context.Contracts.Add(new Contract
+                {
+                    StartDate = DateTime.Today,
+                    EndDate = DateTime.Today.AddYears(1),
+                    IsActive = true,
+                    Lessee = lessee,
+                    Owner = owner,
+                    Price = 800000M,
+                    Property = property,
+                    Remarks = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+                    "Mauris nec iaculis ex. Nullam gravida nunc eleifend, placerat tellus a, " +
+                    "eleifend metus. Phasellus id suscipit magna. Orci varius natoque penatibus et " +
+                    "magnis dis parturient montes, nascetur ridiculus mus. Nullam volutpat ultrices ex, " +
+                    "sed cursus sem tincidunt ut. Nullam metus lorem, convallis quis dignissim quis, " +
+                    "porttitor quis leo. In hac habitasse platea dictumst. Duis pharetra sed arcu ac " +
+                    "viverra. Proin dapibus lobortis commodo. Vivamus non commodo est, ac vehicula augue. " +
+                    "Nam enim felis, rutrum in tortor sit amet, efficitur hendrerit augue. Cras pellentesque " +
+                    "nisl eu maximus tempor. Curabitur eu efficitur metus. Sed ultricies urna et auctor commodo."
+                });
+
                 await _context.SaveChangesAsync();
             }
         }
-        private async Task CheckLesseesAsync()
+
+        private async Task CheckManagerAsync(User user)
+        {
+            if (!_context.Managers.Any())
+            {
+                _context.Managers.Add(new Manager { User = user });
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        private async Task<User> CheckUserAsync(
+            string document, 
+            string firstName, 
+            string lastName, 
+            string email, 
+            string phone, 
+            string address, 
+            string role)
+        {
+            var user = await _userHelper.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                user = new User
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    UserName = email,
+                    PhoneNumber = phone,
+                    Address = address,
+                    Document = document
+                };
+
+                await _userHelper.AddUserAsync(user, "123456");
+                await _userHelper.AddUserToRoleAsync(user, role);
+            }
+
+            return user;
+        }
+
+        private async Task CheckRoles()
+        {
+            await _userHelper.CheckRoleAsync("Manager");
+            await _userHelper.CheckRoleAsync("Owner");
+            await _userHelper.CheckRoleAsync("Lessee");
+        }
+
+        private async Task CheckLesseesAsync(User user)
         {
             if (!_context.Lessees.Any())
             {
-                AddLessee("876543", "Ramon", "Gamboa", "234 3232", "310 322 3221", "Calle Luna Calle Sol");
-                AddLessee("654565", "Julian", "Martinez", "343 3226", "300 322 3221", "Calle 77 #22 21");
-                AddLessee("214231", "Carmenza", "Ruis", "450 4332", "350 322 3221", "Carrera 56 #22 21");
+                _context.Lessees.Add(new Lessee { User = user });
                 await _context.SaveChangesAsync();
             }
-        }
-
-        private void AddLessee(string document, string firstName, string lastName, string fixedPhone, string cellPhone, string address)
-        {
-            _context.Lessees.Add(new Lessee
-            {
-                Address = address,
-                CellPhone = cellPhone,
-                Document = document,
-                FirstName = firstName,
-                FixedPhone = fixedPhone,
-                LastName = lastName
-            });
         }
 
         private async Task CheckPropertiesAsync()
@@ -70,45 +132,27 @@ namespace MyLeasing.Web.Data
             }
         }
 
-        private async Task CheckOwnersAsync()
+        private async Task CheckPropertyTypesAsync()
         {
-            if (!_context.Owners.Any())
+            if (!_context.PropertyTypes.Any())
             {
-                AddOwner("8989898", "Juan", "Zuluaga", "234 3232", "310 322 3221", "Calle Luna Calle Sol");
-                AddOwner("7655544", "Jose", "Cardona", "343 3226", "300 322 3221", "Calle 77 #22 21");
-                AddOwner("6565555", "Maria", "López", "450 4332", "350 322 3221", "Carrera 56 #22 21");
+                _context.PropertyTypes.Add(new PropertyType { Name = "Apartamento" });
+                _context.PropertyTypes.Add(new PropertyType { Name = "Casa" });
+                _context.PropertyTypes.Add(new PropertyType { Name = "Negocio" });
                 await _context.SaveChangesAsync();
             }
         }
 
-        private void AddOwner(
-            string document, 
-            string firstName,
-            string lastName, 
-            string fixedPhone, 
-            string cellPhone, 
-            string address)
+        private async Task CheckOwnersAsync(User user)
         {
-            _context.Owners.Add(new Owner
+            if (!_context.Owners.Any())
             {
-                Address = address,
-                CellPhone = cellPhone,
-                Document = document,
-                FirstName = firstName,
-                FixedPhone = fixedPhone,
-                LastName = lastName
-            });
+                _context.Owners.Add(new Owner { User = user });
+                await _context.SaveChangesAsync();
+            }
         }
 
-        private void AddProperty(
-            string address, 
-            string neighborhood, 
-            Owner owner, 
-            PropertyType propertyType, 
-            decimal price, 
-            int rooms, 
-            int squareMeters, 
-            int stratum)
+        private void AddProperty(string address, string neighborhood, Owner owner, PropertyType propertyType, decimal price, int rooms, int squareMeters, int stratum)
         {
             _context.Properties.Add(new Property
             {
