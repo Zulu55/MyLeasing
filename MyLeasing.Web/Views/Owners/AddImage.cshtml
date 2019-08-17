@@ -1,0 +1,29 @@
+﻿@model MyLeasing.Web.Models.PropertyImageViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Add Image</h2>
+
+<h4>Property</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddImage" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" type="file" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="DetailsProperty" asp-route-id="@Model.Id" class="btn btn-success">Back to Property</a>
+            </div>
+        </form>
+    </div>
+</div>
