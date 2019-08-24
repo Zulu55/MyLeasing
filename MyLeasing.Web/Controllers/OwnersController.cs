@@ -493,5 +493,28 @@ namespace MyLeasing.Web.Controllers
             await _dataContext.SaveChangesAsync();
             return RedirectToAction($"{nameof(Details)}/{property.Owner.Id}");
         }
+
+        public async Task<IActionResult> DetailsContract(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var contract = await _dataContext.Contracts
+                .Include(c => c.Owner)
+                .ThenInclude(o => o.User)
+                .Include(c => c.Lessee)
+                .ThenInclude(o => o.User)
+                .Include(c => c.Property)
+                .ThenInclude(p => p.PropertyType)
+                .FirstOrDefaultAsync(pi => pi.Id == id.Value);
+            if (contract == null)
+            {
+                return NotFound();
+            }
+
+            return View(contract);
+        }
     }
 }
