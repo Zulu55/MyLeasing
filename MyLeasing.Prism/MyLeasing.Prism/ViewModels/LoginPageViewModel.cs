@@ -72,7 +72,7 @@ namespace MyLeasing.Prism.ViewModels
             };
 
             var url = App.Current.Resources["UrlAPI"].ToString();
-            var response = await _apiService.GetTokenAsync(url, "/Account", "/CreateToken", request);
+            var response = await _apiService.GetTokenAsync(url, "Account", "/CreateToken", request);
 
             IsRunning = false;
             IsEnabled = true;
