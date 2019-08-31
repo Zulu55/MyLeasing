@@ -56,7 +56,7 @@ namespace MyLeasing.Common.Services
             }
         }
 
-        public async Task<Response<OwnerResponse>> GetOwnerByEmail(
+        public async Task<Response<OwnerResponse>> GetOwnerByEmailAsync(
             string urlBase,
             string servicePrefix,
             string controller,
@@ -105,7 +105,7 @@ namespace MyLeasing.Common.Services
             }
         }
 
-        public async Task<bool> CheckConnection(string url)
+        public async Task<bool> CheckConnectionAsync(string url)
         {
             if (!CrossConnectivity.Current.IsConnected)
             {

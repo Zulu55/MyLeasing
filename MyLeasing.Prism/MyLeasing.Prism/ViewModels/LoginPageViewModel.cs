@@ -1,16 +1,13 @@
 ﻿using MyLeasing.Common.Models;
 using MyLeasing.Common.Services;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace MyLeasing.Prism.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
+        private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private string _password;
         private bool _isRunning;
@@ -21,9 +18,14 @@ namespace MyLeasing.Prism.ViewModels
             INavigationService navigationService,
             IApiService apiService) : base(navigationService)
         {
+            _navigationService = navigationService;
             _apiService = apiService;
             Title = "Login";
             IsEnabled = true;
+
+            //TODO: delete this lines
+            Email = "jzuluaga55@hotmail.com";
+            Password = "123456";
         }
 
         public DelegateCommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand(Login));
@@ -66,7 +68,7 @@ namespace MyLeasing.Prism.ViewModels
             IsEnabled = false;
 
             var url = App.Current.Resources["UrlAPI"].ToString();
-            var connection = await _apiService.CheckConnection(url);
+            var connection = await _apiService.CheckConnectionAsync(url);
             if (!connection)
             {
                 IsEnabled = true;
@@ -83,19 +85,34 @@ namespace MyLeasing.Prism.ViewModels
 
             var response = await _apiService.GetTokenAsync(url, "Account", "/CreateToken", request);
 
-            IsRunning = false;
-            IsEnabled = true;
-
             if (!response.IsSuccess)
             {
+                IsRunning = false;
+                IsEnabled = true;
                 await App.Current.MainPage.DisplayAlert("Error", "User or password incorrect.", "Accept");
                 Password = string.Empty;
                 return;
             }
 
             var token = response.Result;
+            var response2 = await _apiService.GetOwnerByEmailAsync(url, "api", "/Owners/GetOwnerByEmail", "bearer", token.Token, Email);
+            if (!response2.IsSuccess)
+            {
+                IsRunning = false;
+                IsEnabled = true;
+                await App.Current.MainPage.DisplayAlert("Error", "Problem with user data, call support.", "Accept");
+                return;
+            }
 
-            await App.Current.MainPage.DisplayAlert("Ok", "Fuck yeah!!!", "Accept");
+            var owner = response2.Result;
+            var parameters = new NavigationParameters
+            {
+                { "owner", owner }
+            };
+
+            await _navigationService.NavigateAsync("PropertiesPage", parameters);
+            IsRunning = false;
+            IsEnabled = true;
         }
     }
 }
