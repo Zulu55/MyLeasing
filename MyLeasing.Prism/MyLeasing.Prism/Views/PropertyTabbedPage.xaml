@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+            xmlns:views="clr-namespace:MyLeasing.Prism.Views"
+            prism:ViewModelLocator.AutowireViewModel="True"
+            x:Class="MyLeasing.Prism.Views.PropertyTabbedPage"
+            Title="{Binding Title}">
+
+    <TabbedPage.Children>
+        <views:PropertyPage/>
+        <views:ContractsPage/>
+    </TabbedPage.Children>
+    
+</TabbedPage>

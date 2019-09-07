@@ -6,6 +6,7 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="MyLeasing.Prism.Views.PropertyPage"
+             IconImageSource="ic_action_home"
              Title="{Binding Title}">
 
     <ScrollView>
@@ -19,7 +20,7 @@
                 ItemsSource="{Binding ImageCollection}"
                 NavigationDelay="5000"
                 NavigationDirection="Horizontal"
-                NavigationStripMode="Dots"
+                NavigationStripMode="Thumbnail"
                 NavigationStripPosition="Bottom">
                 <syncfusion:SfRotator.ItemTemplate>
                     <DataTemplate>
