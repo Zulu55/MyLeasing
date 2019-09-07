@@ -10,7 +10,7 @@ namespace MyLeasing.Prism.ViewModels
         private readonly INavigationService _navigationService;
         private OwnerResponse _owner;
         private ObservableCollection<PropertyItemViewModel> _properties;
-        
+
         public PropertiesPageViewModel(
             INavigationService navigationService) : base(navigationService)
         {

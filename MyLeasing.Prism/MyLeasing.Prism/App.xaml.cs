@@ -11,18 +11,13 @@ namespace MyLeasing.Prism
 {
     public partial class App
     {
-        /* 
-         * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
-         * This imposes a limitation in which the App class must have a default constructor. 
-         * App(IPlatformInitializer initializer = null) cannot be handled by the Activator.
-         */
         public App() : this(null) { }
 
         public App(IPlatformInitializer initializer) : base(initializer) { }
 
         protected override async void OnInitialized()
         {
-            InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTM3Njg0QDMxMzcyZTMyMmUzMGUvQlg3Tnk5ODRGQ01pbzNnWmEyWHdWcExaaUVOQ0FKODZGNDFpekRtd2M9"); InitializeComponent();
 
             await NavigationService.NavigateAsync("NavigationPage/LoginPage");
         }
@@ -34,6 +29,8 @@ namespace MyLeasing.Prism
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<PropertiesPage, PropertiesPageViewModel>();
             containerRegistry.RegisterForNavigation<PropertyPage, PropertyPageViewModel>();
+            containerRegistry.RegisterForNavigation<ContractsPage, ContractsPageViewModel>();
+            containerRegistry.RegisterForNavigation<ContractPage, ContractPageViewModel>();
         }
     }
 }

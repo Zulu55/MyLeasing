@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MyLeasing.Prism.Views.ContractsPage"
+             Title="{Binding Title}">
+
+    <StackLayout
+        Padding="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Label
+                Grid.Column="0"
+                FontAttributes="Bold"
+                Text="Start Date"/>
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                Text="End Date"/>
+            <Label
+                Grid.Column="2"
+                FontAttributes="Bold"
+                Text="Lessee"/>
+        </Grid>
+        <ListView
+            HasUnevenRows="True"
+            ItemsSource="{Binding Contracts}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectContractCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Column="0"
+                                Text="{Binding StartDateLocal, StringFormat='{0:yyyy/MM/dd}'}"
+                                VerticalOptions="Center"/>
+                            <Label
+                                Grid.Column="1"
+                                Text="{Binding EndDateLocal, StringFormat='{0:yyyy/MM/dd}'}"
+                                VerticalOptions="Center"/>
+                            <Label
+                                Grid.Column="2"
+                                Text="{Binding Lessee.FullName}"
+                                VerticalOptions="Center"/>
+                            <Image
+                                Grid.Column="3"
+                                Source="ic_more_vert"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
