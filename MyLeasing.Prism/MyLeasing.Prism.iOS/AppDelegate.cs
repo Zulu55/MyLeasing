@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Syncfusion.SfRotator.XForms.iOS;
 using UIKit;
 
@@ -15,6 +16,7 @@ namespace MyLeasing.Prism.iOS
             LoadApplication(new App(new iOSInitializer()));
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             new SfRotatorRenderer();
+            new SfBusyIndicatorRenderer();
 
             return base.FinishedLaunching(app, options);
         }

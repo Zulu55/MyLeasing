@@ -16,6 +16,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
             <Label
                 Grid.Column="0"
                 FontAttributes="Bold"
@@ -45,6 +48,9 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
                             <Label
                                 Grid.Column="0"
                                 Text="{Binding StartDateLocal, StringFormat='{0:yyyy/MM/dd}'}"
