@@ -1,18 +1,17 @@
 ﻿@model MyLeasing.Web.Models.AddUserViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Register";
 }
 
-<h2>Create</h2>
+<h2>Register</h2>
 
 <h4>Owner</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="RoleId" />
 
             <div class="form-group">
                 <label asp-for="Username" class="control-label"></label>
@@ -20,7 +19,13 @@
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
 
-            <partial name="_User" />
+            <partial name="_User"/>
+
+            <div class="form-group">
+                <label asp-for="RoleId" class="control-label"></label>
+                <select asp-for="RoleId" asp-items="Model.Roles" class="form-control"></select>
+                <span asp-validation-for="RoleId" class="text-danger"></span>
+            </div>
 
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
@@ -35,8 +40,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-success">Back to List</a>
+                <input type="submit" value="Register" class="btn btn-primary" />
             </div>
         </form>
     </div>

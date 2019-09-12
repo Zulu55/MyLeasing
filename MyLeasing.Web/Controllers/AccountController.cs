@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using MyLeasing.Web.Data;
+using MyLeasing.Web.Data.Entities;
 using MyLeasing.Web.Helpers;
 using MyLeasing.Web.Models;
 
@@ -15,15 +17,21 @@ namespace MyLeasing.Web.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly DataContext _dataContext;
         private readonly IUserHelper _userHelper;
         private readonly IConfiguration _configuration;
+        private readonly ICombosHelper _combosHelper;
 
         public AccountController(
+            DataContext dataContext,
             IUserHelper userHelper,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            ICombosHelper combosHelper)
         {
+            _dataContext = dataContext;
             _userHelper = userHelper;
             _configuration = configuration;
+            _combosHelper = combosHelper;
         }
 
         [HttpGet]
@@ -101,6 +109,84 @@ namespace MyLeasing.Web.Controllers
             }
 
             return BadRequest();
+        }
+
+        public IActionResult NotAuthorized()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            var model = new AddUserViewModel
+            {
+                Roles = _combosHelper.GetComboRoles()
+            };
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(AddUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var role = "Owner";
+                if (model.RoleId == 1)
+                {
+                    role = "Lessee";
+                }
+
+                var user = await _userHelper.AddUser(model, role);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "This email is already used.");
+                    return View(model);
+                }
+
+                if (model.RoleId == 1)
+                {
+                    var lessee = new Lessee
+                    {
+                        Contracts = new List<Contract>(),
+                        User = user
+                    };
+
+                    _dataContext.Lessees.Add(lessee);
+                }
+                else
+                {
+                    var owner = new Owner
+                    {
+                        Contracts = new List<Contract>(),
+                        Properties = new List<Property>(),
+                        User = user
+                    };
+
+                    _dataContext.Owners.Add(owner);
+                }
+
+                await _dataContext.SaveChangesAsync();
+
+                var loginViewModel = new LoginViewModel
+                {
+                    Password = model.Password,
+                    RememberMe = false,
+                    Username = model.Username
+                };
+
+                var result2 = await _userHelper.LoginAsync(loginViewModel);
+
+                if (result2.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            model.Roles = _combosHelper.GetComboRoles();
+            return View(model);
         }
     }
 }

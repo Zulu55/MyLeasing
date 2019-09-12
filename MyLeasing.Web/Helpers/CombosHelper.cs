@@ -51,5 +51,17 @@ namespace MyLeasing.Web.Helpers
 
             return list;
         }
+
+        public IEnumerable<SelectListItem> GetComboRoles()
+        {
+            var list = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "0", Text = "(Select a role...)" },
+                new SelectListItem { Value = "1", Text = "Lessee" },
+                new SelectListItem { Value = "2", Text = "Owner" }
+            };
+
+            return list;
+        }
     }
 }
