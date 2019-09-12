@@ -13,5 +13,11 @@ namespace MyLeasing.Web.Models
         public string Password { get; set; }
 
         public bool RememberMe { get; set; }
+
+        /// <summary>
+        /// 0 - Local users
+        /// 1 - Facebook users
+        /// </summary>
+        public int UserType { get; set; }
     }
 }

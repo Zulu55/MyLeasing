@@ -23,6 +23,12 @@ namespace MyLeasing.Web.Data.Entities
         [MaxLength(100, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         public string Address { get; set; }
 
+        /// <summary>
+        /// 0 - Local users
+        /// 1 - Facebook users
+        /// </summary>
+        public int UserType { get; set; }
+
         public string FullName => $"{FirstName} {LastName}";
 
         public string FullNameWithDocument => $"{FirstName} {LastName} - {Document}";

@@ -86,32 +86,47 @@ namespace MyLeasing.Web.Controllers
 
                     if (result.Succeeded)
                     {
-                        var claims = new[]
-                        {
-                            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                        };
-
-                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Tokens:Key"]));
-                        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-                        var token = new JwtSecurityToken(
-                            _configuration["Tokens:Issuer"],
-                            _configuration["Tokens:Audience"],
-                            claims,
-                            expires: DateTime.UtcNow.AddMonths(6),
-                            signingCredentials: credentials);
-                        var results = new
-                        {
-                            token = new JwtSecurityTokenHandler().WriteToken(token),
-                            expiration = token.ValidTo
-                        };
-
+                        var results = GenerateToken(user);
                         return Created(string.Empty, results);
                     }
+                }
+                else if (model.UserType == 1)
+                {
+                    var userFacebook = await CreateUserFacebook(model);
+                    var results = GenerateToken(user);
+                    return Created(string.Empty, results);
                 }
             }
 
             return BadRequest();
+        }
+
+        private async Task<User> CreateUserFacebook(LoginViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        private object GenerateToken(User user)
+        {
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Tokens:Key"]));
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(
+                _configuration["Tokens:Issuer"],
+                _configuration["Tokens:Audience"],
+                claims,
+                expires: DateTime.UtcNow.AddMonths(6),
+                signingCredentials: credentials);
+            return new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = token.ValidTo
+            };
         }
 
         public IActionResult NotAuthorized()
