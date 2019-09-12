@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using Facebook.CoreKit;
+using Foundation;
 using Prism;
 using Prism.Ioc;
 using Syncfusion.SfBusyIndicator.XForms.iOS;
@@ -20,13 +21,17 @@ namespace MyLeasing.Prism.iOS
 
             return base.FinishedLaunching(app, options);
         }
+
+        public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+        {
+            return ApplicationDelegate.SharedInstance.OpenUrl(application, url, sourceApplication, annotation);
+        }
     }
 
     public class iOSInitializer : IPlatformInitializer
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // Register any platform specific implementations
         }
     }
 }

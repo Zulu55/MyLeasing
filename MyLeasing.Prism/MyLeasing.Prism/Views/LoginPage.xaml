@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:local="clr-namespace:MyLeasing.Prism.Controls"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="MyLeasing.Prism.Views.LoginPage"
              Title="{Binding Title}">
@@ -29,15 +30,19 @@
                     IsPassword="True"
                     Placeholder="Enter your password..."
                     Text="{Binding Password}"/>
-                <Button
-                    BackgroundColor="Navy"
-                    BorderRadius="23"
-                    Command="{Binding LoginCommand}"
-                    HeightRequest="46"
-                    IsEnabled="{Binding IsEnabled}"
-                    Text="Login"
-                    TextColor="White"
-                    VerticalOptions="EndAndExpand"/>
+                <StackLayout
+                    VerticalOptions="EndAndExpand">
+                    <Button
+                        BackgroundColor="Navy"
+                        Command="{Binding LoginCommand}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="Login"
+                        TextColor="White"/>
+                    <local:FacebookLoginButton
+                        OnSuccess="{Binding OnFacebookLoginSuccessCmd}"
+                        OnError="{Binding OnFacebookLoginErrorCmd}"
+                        OnCancel="{Binding OnFacebookLoginCancelCmd}" />
+                </StackLayout>
             </StackLayout>
             <busyindicator:SfBusyIndicator  
                 AnimationType="Gear"

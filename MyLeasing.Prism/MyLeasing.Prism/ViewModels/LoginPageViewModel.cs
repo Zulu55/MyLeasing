@@ -1,7 +1,11 @@
 ﻿using MyLeasing.Common.Models;
 using MyLeasing.Common.Services;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
+using System.Net.Http;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace MyLeasing.Prism.ViewModels
 {
@@ -26,7 +30,28 @@ namespace MyLeasing.Prism.ViewModels
             //TODO: delete this lines
             Email = "jzuluaga55@hotmail.com";
             Password = "123456";
+
+            OnFacebookLoginSuccessCmd = new Command<string>((authToken) =>
+            {
+                GetFacebookData(authToken);
+            });
+
+            OnFacebookLoginErrorCmd = new Command<string>((err) =>
+            {
+                App.Current.MainPage.DisplayAlert("Error", $"Authentication failed: {err}", "Accept");
+            });
+
+            OnFacebookLoginCancelCmd = new Command(() =>
+            {
+                App.Current.MainPage.DisplayAlert("Cancel", "Authentication cancelled by the user.", "Accept");
+            });
         }
+
+        public ICommand OnFacebookLoginSuccessCmd { get; }
+
+        public ICommand OnFacebookLoginErrorCmd { get; }
+
+        public ICommand OnFacebookLoginCancelCmd { get; }
 
         public DelegateCommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand(Login));
 
@@ -113,6 +138,19 @@ namespace MyLeasing.Prism.ViewModels
             await _navigationService.NavigateAsync("PropertiesPage", parameters);
             IsRunning = false;
             IsEnabled = true;
+        }
+
+        private async void GetFacebookData(string authToken)
+        {
+            var requestUrl = $"https://graph.facebook.com/v2.8/me/?fields=name," +
+                $"picture.width(999),cover,age_range,devices,email,gender," +
+                $"is_verified,birthday,languages,work,website,religion," +
+                $"location,locale,link,first_name,last_name," +
+                $"hometown&access_token={authToken}";
+            var httpClient = new HttpClient();
+            var userJson = await httpClient.GetStringAsync(requestUrl);
+            var user = JsonConvert.DeserializeObject<FacebookResponse>(userJson);
+            await App.Current.MainPage.DisplayAlert("Success", $"Name: {user.Name}, Email: {user.Email}, Id: {user.Id}", "Accept");
         }
     }
 }
