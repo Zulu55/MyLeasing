@@ -5,7 +5,6 @@
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
-
 <h2>Property</h2>
 
 <div class="row">
@@ -100,6 +99,12 @@
                 <dd>
                     @Html.DisplayFor(model => model.Contracts.Count)
                 </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Remarks)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Remarks)
+                </dd>
             </dl>
         </div>
     </div>
@@ -107,8 +112,7 @@
 <div>
     <a asp-action="EditProperty" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
     <a asp-action="AddImage" asp-route-id="@Model.Id" class="btn btn-primary">Add Image</a>
-    <a asp-action="AddContract" asp-route-id="@Model.Id" class="btn btn-default">Add Contract</a>
-    <a asp-action="Details" asp-route-id="@Model.Owner.Id" class="btn btn-success">Back to Owner</a>
+    <a asp-action="MyProperties" class="btn btn-success">Back to My Properties</a>
 </div>
 <hr />
 <div class="row">
@@ -222,9 +226,7 @@
                                                     @Html.DisplayFor(modelItem => item.IsActive)
                                                 </td>
                                                 <td>
-                                                    <a asp-action="EditContract" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i> </a>
-                                                    <a asp-action="DetailsContract" asp-route-id="@item.Id" class="btn btn-info"><i class="glyphicon glyphicon-list"> </i> </a>
-                                                    <button data-id="@item.Id" class="btn btn-danger deleteContract" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                                    <a asp-action="DetailsContract" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-list"> </i> </a>
                                                 </td>
                                             </tr>
                                         }
@@ -239,7 +241,26 @@
     </div>
 </div>
 
-<partial name="_DeleteDialog" />
+<!--Delete Item-->
+<div class="modal fade" id="deleteDialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to delete the record?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="btnYesDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -247,34 +268,20 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+
             $('#MyTableImages').DataTable();
             $('#MyTableContracts').DataTable();
 
             // Delete item
             var item_to_delete;
-            var action_to_delete;
 
             $('.deleteImage').click((e) => {
                 item_to_delete = e.currentTarget.dataset.id;
-                action_to_delete = 1;
-            });
-
-            $('.deleteContract').click((e) => {
-                item_to_delete = e.currentTarget.dataset.id;
-                action_to_delete = 2;
             });
 
             $("#btnYesDelete").click(function () {
-                if (action_to_delete == 1) {
-                    window.location.href = '/Owners/DeleteImage/' + item_to_delete;
-                } else {
-                    window.location.href = '/Owners/DeleteContract/' + item_to_delete;
-                }
+                window.location.href = '/Home/DeleteImage/' + item_to_delete;
             });
         });
     </script>
 }
-
-
-
-

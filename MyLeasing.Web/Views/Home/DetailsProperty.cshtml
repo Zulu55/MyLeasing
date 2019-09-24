@@ -1,0 +1,142 @@
+﻿@model MyLeasing.Web.Data.Entities.Property
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+<h2>Property</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            <h4>Details</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    Property Type
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PropertyType.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Neighborhood)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Neighborhood)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SquareMeters)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SquareMeters)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rooms)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Rooms)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.HasParkingLot)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.HasParkingLot)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Remarks)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Remarks)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="SearchProperties" class="btn btn-success">Back to Properties</a>
+</div>
+<hr />
+@if (Model.PropertyImages.Count == 0)
+{
+    <h5>Not images added yet.</h5>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            @if (Model.PropertyImages.Count > 0)
+            {
+                <img src="@Url.Content(Model.PropertyImages.ToList()[0].ImageUrl)" alt="Image" style="width:400px;height:400px;max-width: 100%; height: auto;" />
+            }
+        </div>
+        <div class="col-md-4">
+            @if (Model.PropertyImages.Count > 1)
+            {
+                <img src="@Url.Content(Model.PropertyImages.ToList()[1].ImageUrl)" alt="Image" style="width:400px;height:400px;max-width: 100%; height: auto;" />
+            }
+        </div>
+        <div class="col-md-4">
+            @if (Model.PropertyImages.Count > 2)
+            {
+                <img src="@Url.Content(Model.PropertyImages.ToList()[2].ImageUrl)" alt="Image" style="width:400px;height:400px;max-width: 100%; height: auto;" />
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @if (Model.PropertyImages.Count > 3)
+            {
+                <img src="@Url.Content(Model.PropertyImages.ToList()[3].ImageUrl)" alt="Image" style="width:400px;height:400px;max-width: 100%; height: auto;" />
+            }
+        </div>
+        <div class="col-md-4">
+            @if (Model.PropertyImages.Count > 4)
+            {
+                <img src="@Url.Content(Model.PropertyImages.ToList()[4].ImageUrl)" alt="Image" style="width:400px;height:400px;max-width: 100%; height: auto;" />
+            }
+        </div>
+        <div class="col-md-4">
+            @if (Model.PropertyImages.Count > 5)
+            {
+                <img src="@Url.Content(Model.PropertyImages.ToList()[5].ImageUrl)" alt="Image" style="width:400px;height:400px;max-width: 100%; height: auto;" />
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @if (Model.PropertyImages.Count > 6)
+            {
+                <img src="@Url.Content(Model.PropertyImages.ToList()[6].ImageUrl)" alt="Image" style="width:400px;height:400px;max-width: 100%; height: auto;" />
+            }
+        </div>
+        <div class="col-md-4">
+            @if (Model.PropertyImages.Count > 7)
+            {
+                <img src="@Url.Content(Model.PropertyImages.ToList()[7].ImageUrl)" alt="Image" style="width:400px;height:400px;max-width: 100%; height: auto;" />
+            }
+        </div>
+        <div class="col-md-4">
+            @if (Model.PropertyImages.Count > 8)
+            {
+                <img src="@Url.Content(Model.PropertyImages.ToList()[8].ImageUrl)" alt="Image" style="width:400px;height:400px;max-width: 100%; height: auto;" />
+            }
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

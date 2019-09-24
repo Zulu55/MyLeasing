@@ -26,16 +26,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">MyLeasing.Web</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">My Leasing</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Manager"))
                     {
+                        <li><a asp-area="" asp-controller="Lessees" asp-action="Index">Lessees</a></li>
+                        <li><a asp-area="" asp-controller="Managers" asp-action="Index">Managers</a></li>
                         <li><a asp-area="" asp-controller="Owners" asp-action="Index">Owners</a></li>
+                        <li><a asp-area="" asp-controller="Properties" asp-action="Index">Properties</a></li>
                         <li><a asp-area="" asp-controller="PropertyTypes" asp-action="Index">Property Types</a></li>
                     }
                 </ul>
@@ -60,7 +60,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - MyLeasing.Web</p>
+            <p>&copy; 2019 - By Zulu</p>
         </footer>
     </div>
 

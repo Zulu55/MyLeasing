@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyLeasing.Web.Data.Entities.Owner>
+﻿@model IEnumerable<MyLeasing.Web.Data.Entities.Property>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,40 +7,39 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
 
-<p>
-    <a asp-action="Create" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Create New</a>
-</p>
-
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Owners</h3>
+                <h3 class="panel-title">Properties</h3>
             </div>
             <div class="panel-body">
                 <table class="table table-hover table-responsive table-striped" id="MyTable">
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.Document)
+                                Property Type
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.FirstName)
+                                Owner
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.LastName)
+                                @Html.DisplayNameFor(model => model.Neighborhood)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.Email)
+                                @Html.DisplayNameFor(model => model.Address)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.Address)
+                                @Html.DisplayNameFor(model => model.Price)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.User.PhoneNumber)
+                                @Html.DisplayNameFor(model => model.SquareMeters)
                             </th>
                             <th>
-                                Properties
+                                @Html.DisplayNameFor(model => model.IsAvailable)
+                            </th>
+                            <th>
+                                Images
                             </th>
                             <th>
                                 Contracts
@@ -53,33 +52,34 @@
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.User.Document)
+                                    @Html.DisplayFor(modelItem => item.PropertyType.Name)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.User.FirstName)
+                                    @Html.DisplayFor(modelItem => item.Owner.User.FullNameWithDocument)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.User.LastName)
+                                    @Html.DisplayFor(modelItem => item.Neighborhood)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.User.Email)
+                                    @Html.DisplayFor(modelItem => item.Address)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.User.Address)
+                                    @Html.DisplayFor(modelItem => item.Price)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                                    @Html.DisplayFor(modelItem => item.SquareMeters)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Properties.Count)
+                                    @Html.DisplayFor(modelItem => item.IsAvailable)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PropertyImages.Count)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Contracts.Count)
                                 </td>
                                 <td>
-                                    <a asp-action="Edit" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i> </a>
                                     <a asp-action="Details" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-list"> </i> </a>
-                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
                                 </td>
                             </tr>
                         }
@@ -90,8 +90,6 @@
     </div>
 </div>
 
-<partial name="_DeleteDialog" />
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -99,17 +97,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#MyTable').DataTable();
-
-            // Delete item
-            var item_to_delete;
-
-            $('.deleteItem').click((e) => {
-                item_to_delete = e.currentTarget.dataset.id;
-            });
-
-            $("#btnYesDelete").click(function () {
-                window.location.href = '/Owners/Delete/' + item_to_delete;
-            });
         });
     </script>
 }

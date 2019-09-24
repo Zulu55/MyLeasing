@@ -5,7 +5,6 @@
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
-
 <h2>Property</h2>
 
 <div class="row">
@@ -105,10 +104,7 @@
     </div>
 </div>
 <div>
-    <a asp-action="EditProperty" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
-    <a asp-action="AddImage" asp-route-id="@Model.Id" class="btn btn-primary">Add Image</a>
-    <a asp-action="AddContract" asp-route-id="@Model.Id" class="btn btn-default">Add Contract</a>
-    <a asp-action="Details" asp-route-id="@Model.Owner.Id" class="btn btn-success">Back to Owner</a>
+    <a asp-action="Index" class="btn btn-success">Back to List</a>
 </div>
 <hr />
 <div class="row">
@@ -133,7 +129,6 @@
                                             <th>
                                                 @Html.DisplayNameFor(model => model.PropertyImages.FirstOrDefault().ImageUrl)
                                             </th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -145,9 +140,6 @@
                                                     {
                                                         <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width:200px;height:200px;max-width: 100%; height: auto;" />
                                                     }
-                                                </td>
-                                                <td>
-                                                    <button data-id="@item.Id" class="btn btn-danger deleteImage" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
                                                 </td>
                                             </tr>
                                         }
@@ -196,7 +188,6 @@
                                             <th>
                                                 @Html.DisplayNameFor(model => model.Contracts.FirstOrDefault().IsActive)
                                             </th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -221,11 +212,6 @@
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.IsActive)
                                                 </td>
-                                                <td>
-                                                    <a asp-action="EditContract" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i> </a>
-                                                    <a asp-action="DetailsContract" asp-route-id="@item.Id" class="btn btn-info"><i class="glyphicon glyphicon-list"> </i> </a>
-                                                    <button data-id="@item.Id" class="btn btn-danger deleteContract" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
-                                                </td>
                                             </tr>
                                         }
                                     </tbody>
@@ -239,8 +225,6 @@
     </div>
 </div>
 
-<partial name="_DeleteDialog" />
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -249,32 +233,6 @@
         $(document).ready(function () {
             $('#MyTableImages').DataTable();
             $('#MyTableContracts').DataTable();
-
-            // Delete item
-            var item_to_delete;
-            var action_to_delete;
-
-            $('.deleteImage').click((e) => {
-                item_to_delete = e.currentTarget.dataset.id;
-                action_to_delete = 1;
-            });
-
-            $('.deleteContract').click((e) => {
-                item_to_delete = e.currentTarget.dataset.id;
-                action_to_delete = 2;
-            });
-
-            $("#btnYesDelete").click(function () {
-                if (action_to_delete == 1) {
-                    window.location.href = '/Owners/DeleteImage/' + item_to_delete;
-                } else {
-                    window.location.href = '/Owners/DeleteContract/' + item_to_delete;
-                }
-            });
         });
     </script>
 }
-
-
-
-

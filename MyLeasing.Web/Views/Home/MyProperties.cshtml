@@ -5,7 +5,6 @@
 }
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
-
 <h2>Owner</h2>
 
 <div>
@@ -37,23 +36,28 @@
             @Html.DisplayFor(model => model.User.Email)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.User.Address)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.User.Address)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.User.PhoneNumber)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.User.PhoneNumber)
         </dd>
+        <dt>
+            Properties
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Properties.Count)
+        </dd>
+        <dt>
+            Contracts
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contracts.Count)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
     <a asp-action="AddProperty" asp-route-id="@Model.Id" class="btn btn-primary">Add Property</a>
-    <a asp-action="Index" class="btn btn-success">Back to List</a>
+    <a asp-action="Index" class="btn btn-success">Back to Home</a>
 </div>
 <hr />
 @if (Model.Properties.Count == 0)
@@ -73,6 +77,9 @@ else
                         <thead>
                             <tr>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().PropertyType.Name)
+                                </th>
+                                <th>
                                     @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().Neighborhood)
                                 </th>
                                 <th>
@@ -86,6 +93,9 @@ else
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().Rooms)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().Stratum)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().IsAvailable)
@@ -104,6 +114,9 @@ else
                             {
                                 <tr>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.PropertyType.Name)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.Neighborhood)
                                     </td>
                                     <td>
@@ -119,6 +132,9 @@ else
                                         @Html.DisplayFor(modelItem => item.Rooms)
                                     </td>
                                     <td>
+                                        @Html.DisplayFor(modelItem => item.Stratum)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.IsAvailable)
                                     </td>
                                     <td>
@@ -129,7 +145,7 @@ else
                                     </td>
                                     <td>
                                         <a asp-action="EditProperty" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i> </a>
-                                        <a asp-action="DetailsProperty" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-list"> </i> </a>
+                                        <a asp-action="DetailsPropertyOwner" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-list"> </i> </a>
                                         <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
                                     </td>
                                 </tr>
@@ -160,7 +176,7 @@ else
             });
 
             $("#btnYesDelete").click(function () {
-                window.location.href = '/Owners/DeleteProperty/' + item_to_delete;
+                window.location.href = '/Home/DeleteProperty/' + item_to_delete;
             });
         });
     </script>
