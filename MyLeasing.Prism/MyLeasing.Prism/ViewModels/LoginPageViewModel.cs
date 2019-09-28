@@ -1,5 +1,7 @@
-﻿using MyLeasing.Common.Models;
+﻿using MyLeasing.Common.Helpers;
+using MyLeasing.Common.Models;
 using MyLeasing.Common.Services;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 
@@ -105,12 +107,11 @@ namespace MyLeasing.Prism.ViewModels
             }
 
             var owner = response2.Result;
-            var parameters = new NavigationParameters
-            {
-                { "owner", owner }
-            };
 
-            await _navigationService.NavigateAsync("PropertiesPage", parameters);
+            Settings.Owner = JsonConvert.SerializeObject(owner);
+            Settings.Token = JsonConvert.SerializeObject(token);
+
+            await _navigationService.NavigateAsync("/LeasingMasterDetailPage/NavigationPage/PropertiesPage");
             IsRunning = false;
             IsEnabled = true;
         }
