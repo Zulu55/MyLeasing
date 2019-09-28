@@ -182,9 +182,6 @@
                                                 Lessee
                                             </th>
                                             <th>
-                                                @Html.DisplayNameFor(model => model.Contracts.FirstOrDefault().Remarks)
-                                            </th>
-                                            <th>
                                                 @Html.DisplayNameFor(model => model.Contracts.FirstOrDefault().Price)
                                             </th>
                                             <th>
@@ -205,9 +202,6 @@
                                             <tr>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.Lessee.User.FullNameWithDocument)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Remarks)
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.Price)
