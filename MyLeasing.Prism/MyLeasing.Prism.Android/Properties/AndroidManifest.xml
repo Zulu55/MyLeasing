@@ -2,5 +2,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.zulusoftware.MyLeasing" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="MyLeasing.Prism.Android" android:icon="@mipmap/ic_launcher"></application>
+	<application android:label="My Leasing" android:icon="@mipmap/ic_launcher"></application>
 </manifest>

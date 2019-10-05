@@ -5,6 +5,7 @@
             xmlns:views="clr-namespace:MyLeasing.Prism.Views"
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="MyLeasing.Prism.Views.PropertyTabbedPage"
+            BackgroundColor="{StaticResource colorBackgroud}"
             Title="{Binding Title}">
 
     <TabbedPage.Children>

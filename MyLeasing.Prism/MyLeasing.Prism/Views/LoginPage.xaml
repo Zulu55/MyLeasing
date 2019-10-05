@@ -5,6 +5,7 @@
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="MyLeasing.Prism.Views.LoginPage"
+             BackgroundColor="{StaticResource colorBackgroud}"
              Title="{Binding Title}">
     
     <ScrollView>
@@ -30,22 +31,22 @@
                     Placeholder="Enter your password..."
                     Text="{Binding Password}"/>
                 <Button
-                    BackgroundColor="Navy"
+                    BackgroundColor="{StaticResource colorPrimary}"
                     BorderRadius="23"
                     Command="{Binding LoginCommand}"
                     HeightRequest="46"
                     IsEnabled="{Binding IsEnabled}"
                     Text="Login"
-                    TextColor="White"
+                    TextColor="{StaticResource colorFontInverse}"
                     VerticalOptions="EndAndExpand"/>
             </StackLayout>
             <busyindicator:SfBusyIndicator  
                 AnimationType="Gear"
                 AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
                 AbsoluteLayout.LayoutFlags="All"
-                BackgroundColor="Silver"
+                BackgroundColor="{StaticResource colorDanger}"
                 HorizontalOptions="Center"
-                TextColor="White"
+                TextColor="{StaticResource colorFontInverse}"
                 IsVisible="{Binding IsRunning}"
                 Title="Loading..."
                 VerticalOptions="Center"
