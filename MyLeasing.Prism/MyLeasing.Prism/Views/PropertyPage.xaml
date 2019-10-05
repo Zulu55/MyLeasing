@@ -6,6 +6,7 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="MyLeasing.Prism.Views.PropertyPage"
+             BackgroundColor="{StaticResource colorBackgroud}"
              IconImageSource="ic_action_home"
              Title="{Binding Title}">
 

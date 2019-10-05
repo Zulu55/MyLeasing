@@ -24,6 +24,7 @@ namespace MyLeasing.Prism.ViewModels
             _apiService = apiService;
             Title = "Login";
             IsEnabled = true;
+            IsRemember = true;
 
             //TODO: delete this lines
             Email = "jzuluaga55@hotmail.com";
@@ -31,6 +32,8 @@ namespace MyLeasing.Prism.ViewModels
         }
 
         public DelegateCommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand(Login));
+
+        public bool IsRemember { get; set; }
 
         public string Email { get; set; }
 
