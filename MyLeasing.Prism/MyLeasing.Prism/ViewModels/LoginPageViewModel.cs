@@ -1,4 +1,5 @@
-﻿using MyLeasing.Common.Helpers;
+﻿using System;
+using MyLeasing.Common.Helpers;
 using MyLeasing.Common.Models;
 using MyLeasing.Common.Services;
 using Newtonsoft.Json;
@@ -15,6 +16,8 @@ namespace MyLeasing.Prism.ViewModels
         private bool _isRunning;
         private bool _isEnabled;
         private DelegateCommand _loginCommand;
+        private DelegateCommand _registerCommand;
+        private DelegateCommand _forgotPasswordCommand;
 
         public LoginPageViewModel(
             INavigationService navigationService,
@@ -24,15 +27,18 @@ namespace MyLeasing.Prism.ViewModels
             _apiService = apiService;
             Title = "Login";
             IsEnabled = true;
-
-            //TODO: delete this lines
-            Email = "jzuluaga55@hotmail.com";
-            Password = "123456";
+            IsRemember = true;
         }
 
-        public DelegateCommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand(Login));
+        public DelegateCommand ForgotPasswordCommand => _forgotPasswordCommand ?? (_forgotPasswordCommand = new DelegateCommand(ForgotPasswordAsync));
+
+        public DelegateCommand LoginCommand => _loginCommand ?? (_loginCommand = new DelegateCommand(LoginAsync));
+
+        public DelegateCommand RegisterCommand => _registerCommand ?? (_registerCommand = new DelegateCommand(RegisterAsync));
 
         public string Email { get; set; }
+
+        public bool IsRemember { get; set; }
 
         public string Password
         {
@@ -52,7 +58,7 @@ namespace MyLeasing.Prism.ViewModels
             set => SetProperty(ref _isEnabled, value);
         }
 
-        private async void Login()
+        private async void LoginAsync()
         {
             if (string.IsNullOrEmpty(Email))
             {
@@ -114,6 +120,16 @@ namespace MyLeasing.Prism.ViewModels
             await _navigationService.NavigateAsync("/LeasingMasterDetailPage/NavigationPage/PropertiesPage");
             IsRunning = false;
             IsEnabled = true;
+        }
+
+        private async void RegisterAsync()
+        {
+            await _navigationService.NavigateAsync("RegisterPage");
+        }
+
+        private async void ForgotPasswordAsync()
+        {
+            await _navigationService.NavigateAsync("RememberPasswordPage");
         }
     }
 }

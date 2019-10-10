@@ -19,6 +19,25 @@
             <Color x:Key="colorFont">#0468BF</Color>
             <Color x:Key="colorFontInverse">#F2F2F2</Color>
 
+            <!-- Styles -->
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource colorPrimary}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="TextColor" Value="{StaticResource colorFontInverse}" />
+            </Style>
+
+            <Style x:Key="secondaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource colorSecondary}" />
+            </Style>
+
+            <Style x:Key="dangerButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource colorDanger}" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource colorFont}" />
+            </Style>
+
         </ResourceDictionary>
         
 	</Application.Resources>
