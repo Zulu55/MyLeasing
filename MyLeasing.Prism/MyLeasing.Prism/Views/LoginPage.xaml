@@ -72,7 +72,7 @@
                 HorizontalOptions="Center"
                 TextColor="{StaticResource colorFontInverse}"
                 IsVisible="{Binding IsRunning}"
-                Title="Loading..."
+                Title="Loging..."
                 VerticalOptions="Center"
                 ViewBoxWidth="80"
                 ViewBoxHeight="80" />
