@@ -116,6 +116,7 @@ namespace MyLeasing.Prism.ViewModels
 
             Settings.Owner = JsonConvert.SerializeObject(owner);
             Settings.Token = JsonConvert.SerializeObject(token);
+            Settings.IsRemembered = IsRemember;
 
             await _navigationService.NavigateAsync("/LeasingMasterDetailPage/NavigationPage/PropertiesPage");
             IsRunning = false;
