@@ -1,4 +1,5 @@
-﻿using MyLeasing.Common.Models;
+﻿using MyLeasing.Common.Helpers;
+using MyLeasing.Common.Models;
 using Prism.Commands;
 using Prism.Navigation;
 
@@ -20,6 +21,7 @@ namespace MyLeasing.Prism.ViewModels
         {
             if (PageName.Equals("LoginPage"))
             {
+                Settings.IsRemembered = false;
                 await _navigationService.NavigateAsync("/NavigationPage/LoginPage");
                 return;
             }

@@ -114,6 +114,7 @@ namespace MyLeasing.Prism.ViewModels
 
             var owner = response2.Result;
 
+            Settings.IsRemembered = IsRemember;
             Settings.Owner = JsonConvert.SerializeObject(owner);
             Settings.Token = JsonConvert.SerializeObject(token);
 
