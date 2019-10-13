@@ -42,6 +42,12 @@ namespace MyLeasing.Web.Data.Entities
 
         public string Remarks { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:N6}")]
+        public double Latitude { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:N6}")]
+        public double Longitude { get; set; }
+
         public PropertyType PropertyType { get; set; }
 
         public Owner Owner { get; set; }

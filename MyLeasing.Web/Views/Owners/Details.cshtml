@@ -91,6 +91,12 @@ else
                                     @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().IsAvailable)
                                 </th>
                                 <th>
+                                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().Latitude)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Properties.FirstOrDefault().Longitude)
+                                </th>
+                                <th>
                                     Images
                                 </th>
                                 <th>
@@ -102,37 +108,43 @@ else
                         <tbody>
                             @foreach (var item in Model.Properties)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Neighborhood)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Address)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Price)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.SquareMeters)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Rooms)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IsAvailable)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PropertyImages.Count)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Contracts.Count)
-                                    </td>
-                                    <td>
-                                        <a asp-action="EditProperty" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i> </a>
-                                        <a asp-action="DetailsProperty" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-list"> </i> </a>
-                                        <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Neighborhood)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SquareMeters)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Rooms)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsAvailable)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Latitude)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Longitude)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PropertyImages.Count)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Contracts.Count)
+                                </td>
+                                <td>
+                                    <a asp-action="EditProperty" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i> </a>
+                                    <a asp-action="DetailsProperty" class="btn btn-default" asp-route-id="@item.Id"><i class="glyphicon glyphicon-list"> </i> </a>
+                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                </td>
+                            </tr>
                             }
                         </tbody>
                     </table>
