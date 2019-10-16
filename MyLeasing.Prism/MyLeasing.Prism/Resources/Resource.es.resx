@@ -120,4 +120,10 @@
   <data name="Accept" xml:space="preserve">
     <value>Aceptar</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>Debes ingresar un correo electrónico.</value>
+  </data>
 </root>
