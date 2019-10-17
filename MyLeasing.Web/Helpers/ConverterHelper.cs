@@ -72,7 +72,9 @@ namespace MyLeasing.Web.Helpers
                 Remarks = model.Remarks,
                 Rooms = model.Rooms,
                 SquareMeters = model.SquareMeters,
-                Stratum = model.Stratum
+                Stratum = model.Stratum,
+                Latitude = model.Latitude,
+                Longitude = model.Longitude
             };
         }
 
@@ -96,7 +98,9 @@ namespace MyLeasing.Web.Helpers
                 Stratum = property.Stratum,
                 OwnerId = property.Owner.Id,
                 PropertyTypeId = property.PropertyType.Id,
-                PropertyTypes = _combosHelper.GetComboPropertyTypes()
+                PropertyTypes = _combosHelper.GetComboPropertyTypes(),
+                Latitude = property.Latitude,
+                Longitude = property.Longitude
             };
         }
     }

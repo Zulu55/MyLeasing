@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -191,5 +192,41 @@ namespace MyLeasing.Web.Controllers.API
                 PhoneNumber = lessee.User.PhoneNumber
             };
         }
+
+        [HttpGet]
+        [Route("GetAvailbleProperties")]
+        public async Task<IActionResult> GetAvailbleProperties()
+        {
+            var properties = await _dataContext.Properties
+                .Include(p => p.PropertyType)
+                .Include(p => p.PropertyImages)
+                .Where(p => p.IsAvailable)
+                .ToListAsync();
+
+            var response = new List<PropertyResponse>(properties.Select(p => new PropertyResponse
+            {
+                Address = p.Address,
+                HasParkingLot = p.HasParkingLot,
+                Id = p.Id,
+                IsAvailable = p.IsAvailable,
+                Latitude = p.Latitude,
+                Longitude = p.Longitude,
+                Neighborhood = p.Neighborhood,
+                Price = p.Price,
+                PropertyImages = new List<PropertyImageResponse>(p.PropertyImages.Select(pi => new PropertyImageResponse
+                {
+                    Id = pi.Id,
+                    ImageUrl = pi.ImageFullPath
+                }).ToList()),
+                PropertyType = p.PropertyType.Name,
+                Remarks = p.Remarks,
+                Rooms = p.Rooms,
+                SquareMeters = p.SquareMeters,
+                Stratum = p.Stratum
+            }).ToList());
+
+            return Ok(response);
+        }
+
     }
 }
