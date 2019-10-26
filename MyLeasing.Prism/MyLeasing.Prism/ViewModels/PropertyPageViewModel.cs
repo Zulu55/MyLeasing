@@ -1,7 +1,9 @@
 ﻿using MyLeasing.Common.Helpers;
 using MyLeasing.Common.Models;
 using Newtonsoft.Json;
+using Prism.Commands;
 using Prism.Navigation;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -11,11 +13,17 @@ namespace MyLeasing.Prism.ViewModels
     {
         private PropertyResponse _property;
         private ObservableCollection<RotatorModel> _imageCollection;
+        private DelegateCommand _editPropertyCommand;
+        private readonly INavigationService _navigationService;
 
-        public PropertyPageViewModel(INavigationService navigationService) : base(navigationService)
+        public PropertyPageViewModel(
+            INavigationService navigationService) : base(navigationService)
         {
             Title = "Details";
+            _navigationService = navigationService;
         }
+
+        public DelegateCommand EditPropertyCommand => _editPropertyCommand ?? (_editPropertyCommand = new DelegateCommand(EditPropertyAsync));
 
         public PropertyResponse Property
         {
@@ -42,6 +50,16 @@ namespace MyLeasing.Prism.ViewModels
             {
                 Image = pi.ImageUrl
             }).ToList());
+        }
+
+        private async void EditPropertyAsync()
+        {
+            var parameters = new NavigationParameters
+            {
+                { "property", Property }
+            };
+
+            await _navigationService.NavigateAsync("EditPropertyPage", parameters);
         }
     }
 }
