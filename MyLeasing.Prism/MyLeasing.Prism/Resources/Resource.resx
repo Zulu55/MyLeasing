@@ -154,7 +154,7 @@
     <value>Loading...</value>
   </data>
   <data name="ErrorNoOwner" xml:space="preserve">
-    <value>You are not an owner</value>
+    <value>This option is valid only for owners.</value>
   </data>
   <data name="AddProperty" xml:space="preserve">
     <value>Add Property</value>
@@ -242,5 +242,26 @@
   </data>
   <data name="AddressError" xml:space="preserve">
     <value>You must enter an address.</value>
+  </data>
+  <data name="PasswordError" xml:space="preserve">
+    <value>You must enter a password.</value>
+  </data>
+  <data name="Forgot" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Email or password incorrect</value>
+  </data>
+  <data name="Loging" xml:space="preserve">
+    <value>Login...</value>
+  </data>
+  <data name="Contracts" xml:space="preserve">
+    <value>Contracts</value>
+  </data>
+  <data name="AddImage" xml:space="preserve">
+    <value>Add Image</value>
+  </data>
+  <data name="DeleteImage" xml:space="preserve">
+    <value>Delete Image</value>
   </data>
 </root>

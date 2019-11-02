@@ -99,5 +99,11 @@ namespace MyLeasing.Prism.Helpers
         public static string AddressPlaceHolder => Resource.AddressPlaceHolder;
 
         public static string Save => Resource.Save;
+
+        public static string Contracts => Resource.Contracts;
+
+        public static string AddImage => Resource.AddImage;
+
+        public static string DeleteImage => Resource.DeleteImage;
     }
 }

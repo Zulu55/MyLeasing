@@ -66,7 +66,7 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="Neighborhood"/>
+                        Text="{i18n:Translate Neighborhood}"/>
                     <Label
                         Grid.Row="0"
                         Grid.Column="1"
@@ -75,7 +75,7 @@
                         Grid.Row="1"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="Address"/>
+                        Text="{i18n:Translate Address}"/>
                     <Label
                         Grid.Row="1"
                         Grid.Column="1"
@@ -84,7 +84,7 @@
                         Grid.Row="2"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="Price"/>
+                        Text="{i18n:Translate Price}"/>
                     <Label
                         Grid.Row="2"
                         Grid.Column="1"
@@ -93,7 +93,7 @@
                         Grid.Row="3"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="Type"/>
+                        Text="{i18n:Translate PropertyType}"/>
                     <Label
                         Grid.Row="3"
                         Grid.Column="1"
@@ -102,7 +102,7 @@
                         Grid.Row="4"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="Is Available?"
+                        Text="{i18n:Translate IsAvailable}"
                         VerticalOptions="Center"/>
                     <CheckBox
                         Grid.Row="4"
@@ -114,7 +114,7 @@
                         Grid.Row="5"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="Has ParkingLot?"
+                        Text="{i18n:Translate HasParkingLot}"
                         VerticalOptions="Center"/>
                     <CheckBox
                         Grid.Row="5"
@@ -126,7 +126,7 @@
                         Grid.Row="6"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="Square Meters"/>
+                        Text="{i18n:Translate SquareMeters}"/>
                     <Label
                         Grid.Row="6"
                         Grid.Column="1"
@@ -135,7 +135,7 @@
                         Grid.Row="7"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="Rooms"/>
+                        Text="{i18n:Translate Rooms}"/>
                     <Label
                         Grid.Row="7"
                         Grid.Column="1"
@@ -144,7 +144,7 @@
                         Grid.Row="8"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="Stratum"/>
+                        Text="{i18n:Translate Stratum}"/>
                     <Label
                         Grid.Row="8"
                         Grid.Column="1"
@@ -153,7 +153,7 @@
                         Grid.Row="9"
                         Grid.Column="0"
                         FontAttributes="Bold"
-                        Text="Remarks"/>
+                        Text="{i18n:Translate Remarks}"/>
                     <Label
                         Grid.Row="9"
                         Grid.Column="1"

@@ -32,10 +32,20 @@
                     </ffimageloading:CachedImage.GestureRecognizers>
                 </ffimageloading:CachedImage>
 
-                <Label
-            	    FontSize="Micro"
-            	    HorizontalOptions="Center"
-            	    Text="{i18n:Translate ChangeImage}"/>
+                <StackLayout
+	                HorizontalOptions="Center"
+	                Orientation="Horizontal">
+
+                    <Button
+    	                Command="{Binding AddImageCommand}"
+    	                Text="{i18n:Translate AddImage}"/>
+
+                    <Button
+                    	Command="{Binding DeleteImageCommand}"
+    	                IsVisible="{Binding IsEdit}"
+    	                Style="{StaticResource dangerButton}"
+    	                Text="{i18n:Translate DeleteImage}"/>
+                </StackLayout>
 
                 <Grid>
                     <Grid.ColumnDefinitions>

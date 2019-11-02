@@ -153,9 +153,6 @@
   <data name="Loading" xml:space="preserve">
     <value>Carregando</value>
   </data>
-  <data name="ErrorNoOwner" xml:space="preserve">
-    <value>Você não é proprietário!</value>
-  </data>
   <data name="AddProperty" xml:space="preserve">
     <value>Adicionar Propriedade</value>
   </data>
@@ -242,5 +239,29 @@
   </data>
   <data name="AddressError" xml:space="preserve">
     <value>Você deve inserir um endereço.</value>
+  </data>
+  <data name="PasswordError" xml:space="preserve">
+    <value>Digite uma senha.</value>
+  </data>
+  <data name="Forgot" xml:space="preserve">
+    <value>Esqueceu sua senha?</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>E-mail ou senha incorretos.</value>
+  </data>
+  <data name="Loging" xml:space="preserve">
+    <value>&amp;Logon</value>
+  </data>
+  <data name="ErrorNoOwner" xml:space="preserve">
+    <value>Esta opção é válida apenas para proprietários.</value>
+  </data>
+  <data name="Contracts" xml:space="preserve">
+    <value>Contratos</value>
+  </data>
+  <data name="AddImage" xml:space="preserve">
+    <value>Adicionar Imagem</value>
+  </data>
+  <data name="DeleteImage" xml:space="preserve">
+    <value>Excluir Imagem</value>
   </data>
 </root>

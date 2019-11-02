@@ -1,5 +1,4 @@
-﻿using System;
-using MyLeasing.Common.Helpers;
+﻿using MyLeasing.Common.Helpers;
 using MyLeasing.Common.Models;
 using MyLeasing.Common.Services;
 using MyLeasing.Prism.Helpers;
