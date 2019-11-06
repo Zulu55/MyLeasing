@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyLeasing.Common.Helpers;
 using MyLeasing.Common.Models;
 using MyLeasing.Web.Data;
@@ -170,6 +172,43 @@ namespace MyLeasing.Web.Controllers.API
             _dataContext.PropertyImages.Remove(propertyImage);
             await _dataContext.SaveChangesAsync();
             return Ok(propertyImage);
+        }
+
+        [HttpGet("GetLastPropertyByOwnerId/{id}")]
+        public async Task<IActionResult> GetLastPropertyByOwnerId([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var owner = await _dataContext.Owners
+                .Include(o => o.Properties)
+                .ThenInclude(p => p.PropertyType)
+                .FirstOrDefaultAsync(o => o.Id == id);
+
+            if (owner == null)
+            {
+                return NotFound();
+            }
+
+            var property = owner.Properties.LastOrDefault();
+            var response = new PropertyResponse
+            {
+                Address = property.Address,
+                HasParkingLot = property.HasParkingLot,
+                Id = property.Id,
+                IsAvailable = property.IsAvailable,
+                Neighborhood = property.Neighborhood,
+                Price = property.Price,
+                PropertyType = property.PropertyType.Name,
+                Remarks = property.Remarks,
+                Rooms = property.Rooms,
+                SquareMeters = property.SquareMeters,
+                Stratum = property.Stratum
+            };
+
+            return Ok(response);
         }
     }
 }

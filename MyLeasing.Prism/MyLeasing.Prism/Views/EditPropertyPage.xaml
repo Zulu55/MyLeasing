@@ -22,7 +22,6 @@
                     CacheDuration= "50"
                     DownsampleToViewSize = "true"
                     ErrorPlaceholder= "ErrorImage"
-                    HeightRequest="150"
                     LoadingPlaceholder= "LoaderImage"
                     RetryCount= "3"
                     RetryDelay= "600"
@@ -37,7 +36,7 @@
 	                Orientation="Horizontal">
 
                     <Button
-    	                Command="{Binding AddImageCommand}"
+    	                Command="{Binding ChangeImageCommand}"
     	                Text="{i18n:Translate AddImage}"/>
 
                     <Button

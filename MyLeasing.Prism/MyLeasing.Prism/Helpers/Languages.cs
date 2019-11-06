@@ -105,5 +105,19 @@ namespace MyLeasing.Prism.Helpers
         public static string AddImage => Resource.AddImage;
 
         public static string DeleteImage => Resource.DeleteImage;
+
+        public static string PictureSource => Resource.PictureSource;
+
+        public static string Cancel => Resource.Cancel;
+
+        public static string FromCamera => Resource.FromCamera;
+
+        public static string FromGallery => Resource.FromGallery;
+
+        public static string CreateEditPropertyConfirm => Resource.CreateEditPropertyConfirm;
+
+        public static string Created => Resource.Created;
+
+        public static string Edited => Resource.Edited;
     }
 }

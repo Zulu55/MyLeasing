@@ -264,4 +264,25 @@
   <data name="DeleteImage" xml:space="preserve">
     <value>Delete Image</value>
   </data>
+  <data name="PictureSource" xml:space="preserve">
+    <value>Where do you get the image?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="FromCamera" xml:space="preserve">
+    <value>From Camera </value>
+  </data>
+  <data name="FromGallery" xml:space="preserve">
+    <value>From Gallery</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Edited" xml:space="preserve">
+    <value>Edited</value>
+  </data>
+  <data name="CreateEditPropertyConfirm" xml:space="preserve">
+    <value>The property was {0} succesfully.</value>
+  </data>
 </root>
