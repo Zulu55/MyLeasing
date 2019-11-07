@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:i18n="clr-namespace:MyLeasing.Prism.Helpers"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="MyLeasing.Prism.Views.EditPropertyPage"
+             BackgroundColor="{StaticResource colorBackgroud}"
+             Title="{Binding Title}">
+
+    <StackLayout
+        Padding="10">
+        <ScrollView>
+            <AbsoluteLayout>
+                <StackLayout 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All">
+
+                    <ffimageloading:CachedImage
+                        Aspect="AspectFit"
+                        CacheDuration= "50"
+                        DownsampleToViewSize = "true"
+                        ErrorPlaceholder= "ErrorImage"
+                        LoadingPlaceholder= "LoaderImage"
+                        RetryCount= "3"
+                        RetryDelay= "600"
+                        Source="{Binding ImageSource}">
+                        <ffimageloading:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                        </ffimageloading:CachedImage.GestureRecognizers>
+                    </ffimageloading:CachedImage>
+
+                   <Label
+            	        FontSize="Micro"
+            	        HorizontalOptions="Center"
+            	        Text="{i18n:Translate ChangeImage}"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label
+                	        Grid.Column="0"
+                	        Grid.Row="0"
+                	        Text="{i18n:Translate Neighborhood}"
+                	        VerticalOptions="Center"/>
+                        <Entry
+                	        Grid.Column="1"
+                	        Grid.Row="0"
+                	        Placeholder="{i18n:Translate NeighborhoodPlaceHolder}"
+                	        Text="{Binding Property.Neighborhood}"/>
+
+                        <Label
+                	        Grid.Column="0"
+                	        Grid.Row="1"
+                	        Text="{i18n:Translate Address}"
+                	        VerticalOptions="Center"/>
+                        <Entry
+                	        Grid.Column="1"
+                	        Grid.Row="1"
+                	        Placeholder="{i18n:Translate AddressPlaceHolder}"
+                	        Text="{Binding Property.Address}"/>
+
+                        <Label
+                	        Grid.Column="0"
+                	        Grid.Row="2"
+                	        Text="{i18n:Translate Price}"
+                	        VerticalOptions="Center"/>
+                        <Entry
+                	        Grid.Column="1"
+                	        Grid.Row="2"
+                	        Keyboard="Numeric"
+                	        Placeholder="{i18n:Translate PricePlaceHolder}"
+                	        Text="{Binding Property.Price}"/>
+
+                        <Label
+                	        Grid.Column="0"
+                	        Grid.Row="3"
+                	        Text="{i18n:Translate SquareMeters}"
+                	        VerticalOptions="Center"/>
+                        <Entry
+                	        Grid.Column="1"
+                	        Grid.Row="3"
+                	        Keyboard="Numeric"
+                	        Placeholder="{i18n:Translate SquareMetersPlaceHolder}"
+                	        Text="{Binding Property.SquareMeters}"/>
+
+                        <Label
+                	        Grid.Column="0"
+                	        Grid.Row="4"
+                	        Text="{i18n:Translate Rooms}"
+                	        VerticalOptions="Center"/>
+                        <Entry
+                	        Grid.Column="1"
+                	        Grid.Row="4"
+                	        Keyboard="Numeric"
+                	        Placeholder="{i18n:Translate RoomsPlaceHolder}"
+                	        Text="{Binding Property.Rooms}"/>
+
+                        <Label
+                	        Grid.Column="0"
+                	        Grid.Row="5"
+                	        Text="{i18n:Translate Stratum}"
+                	        VerticalOptions="Center"/>
+                        <Picker
+                	        Grid.Column="1"
+                	        Grid.Row="5"
+                	        ItemDisplayBinding="{Binding Name}"
+                	        ItemsSource="{Binding Stratums}"
+                	        SelectedItem="{Binding Stratum}"
+                	        Title="{i18n:Translate StratumPlaceHolder}"/>
+
+                        <Label
+                	        Grid.Column="0"
+                	        Grid.Row="6"
+                	        Text="{i18n:Translate HasParkingLot}"
+                	        VerticalOptions="Center"/>
+                        <CheckBox
+                	        Grid.Column="1"
+                	        Grid.Row="6"
+                	        IsChecked="{Binding Property.HasParkingLot}"/>
+
+                        <Label
+                	        Grid.Column="0"
+                	        Grid.Row="7"
+                	        Text="{i18n:Translate IsAvailable}"
+                	        VerticalOptions="Center"/>
+                        <CheckBox
+                	        Grid.Column="1"
+                	        Grid.Row="7"
+                	        IsChecked="{Binding Property.IsAvailable}"/>
+
+                        <Label
+                	        Grid.Column="0"
+                	        Grid.Row="8"
+                	        Text="{i18n:Translate PropertyType}"
+                	        VerticalOptions="Center"/>
+                        <Picker
+                	        Grid.Column="1"
+                	        Grid.Row="8"
+                	        ItemDisplayBinding="{Binding Name}"
+                	        ItemsSource="{Binding PropertyTypes}"
+                	        SelectedItem="{Binding PropertyType}"
+                	        Title="{i18n:Translate PropertyTypePlaceHolder}"/>
+
+                        <Label
+                	        Grid.Column="0"
+                	        Grid.Row="9"
+                	        Text="{i18n:Translate Remarks}"
+                	        VerticalOptions="Center"/>
+                        <Editor
+                	        Grid.Column="1"
+                	        Grid.Row="9"
+                	        HeightRequest="80"
+                	        Text="{Binding Property.Remarks}"/>
+                    </Grid>
+                </StackLayout>
+
+                <busyindicator:SfBusyIndicator  
+                    AnimationType="Gear"
+                    AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="{StaticResource colorDanger}"
+                    HorizontalOptions="Center"
+                    TextColor="{StaticResource colorFontInverse}"
+                    IsVisible="{Binding IsRunning}"
+                    Title="{i18n:Translate Saving}"
+                    VerticalOptions="Center"
+                    ViewBoxWidth="80"
+                    ViewBoxHeight="80" />
+            </AbsoluteLayout>
+        </ScrollView>
+        <StackLayout
+            Orientation="Horizontal"
+            VerticalOptions="EndAndExpand">
+
+            <Button
+                Command="{Binding SaveCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                Text="{i18n:Translate Save}"/>
+
+            <Button
+                Command="{Binding DeleteCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                IsVisible="{Binding IsEdit}"
+                Style="{StaticResource dangerButton}"
+                Text="{i18n:Translate Delete}"/>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

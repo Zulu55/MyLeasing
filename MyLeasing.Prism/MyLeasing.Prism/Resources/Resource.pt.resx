@@ -159,4 +159,97 @@
   <data name="Loging" xml:space="preserve">
     <value>Registrando ...!</value>
   </data>
+  <data name="ErrorNoOwner" xml:space="preserve">
+    <value>Você deve ser um proprietário para executar esta ação.!</value>
+  </data>
+  <data name="NewProperty" xml:space="preserve">
+    <value>Nova Propriedade</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
+  <data name="EditProperty" xml:space="preserve">
+    <value>Editar propriedade</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Toque na imagem para alterar.</value>
+  </data>
+  <data name="Neighborhood" xml:space="preserve">
+    <value>Vizinhança</value>
+  </data>
+  <data name="NeighborhoodError" xml:space="preserve">
+    <value>Você deve entrar em um bairro!</value>
+  </data>
+  <data name="NeighborhoodPlaceHolder" xml:space="preserve">
+    <value>Digite o bairro da propriedade ...!</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Preço</value>
+  </data>
+  <data name="PriceError" xml:space="preserve">
+    <value>Erro de preço!</value>
+  </data>
+  <data name="PricePlaceHolder" xml:space="preserve">
+    <value>Digite o preço</value>
+  </data>
+  <data name="SquareMeters" xml:space="preserve">
+    <value>Metros Quadrados</value>
+  </data>
+  <data name="SquareMetersError" xml:space="preserve">
+    <value>Erro de metros quadrados!</value>
+  </data>
+  <data name="SquareMetersPlaceHolder" xml:space="preserve">
+    <value>Digite metros quadrados ...!</value>
+  </data>
+  <data name="Rooms" xml:space="preserve">
+    <value>Salas</value>
+  </data>
+  <data name="RoomsError" xml:space="preserve">
+    <value>Quartos Erro!</value>
+  </data>
+  <data name="RoomsPlaceHolder" xml:space="preserve">
+    <value>Digite o número do quarto ...!</value>
+  </data>
+  <data name="Stratum" xml:space="preserve">
+    <value>Camada</value>
+  </data>
+  <data name="StratumError" xml:space="preserve">
+    <value>Erro de estrato!</value>
+  </data>
+  <data name="StratumPlaceHolder" xml:space="preserve">
+    <value>Selecione um estrato ...!</value>
+  </data>
+  <data name="PropertyType" xml:space="preserve">
+    <value>Tipo de Propriedade</value>
+  </data>
+  <data name="PropertyTypeError" xml:space="preserve">
+    <value>Erro de tipo de propriedade!</value>
+  </data>
+  <data name="PropertyTypePlaceHolder" xml:space="preserve">
+    <value>Selecione um tipo de propriedade ...!</value>
+  </data>
+  <data name="HasParkingLot" xml:space="preserve">
+    <value>Parque de estacionamento</value>
+  </data>
+  <data name="IsAvailable" xml:space="preserve">
+    <value>, está disponível.</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Comentários:</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Salvando...</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Endereço:</value>
+  </data>
+  <data name="AddressPlaceHolder" xml:space="preserve">
+    <value>Insira o endereço do Imóvel.</value>
+  </data>
+  <data name="AddressError" xml:space="preserve">
+    <value>Erro de endereço!</value>
+  </data>
 </root>

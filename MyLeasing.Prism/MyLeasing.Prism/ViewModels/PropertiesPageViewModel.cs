@@ -1,8 +1,9 @@
 ﻿using MyLeasing.Common.Helpers;
 using MyLeasing.Common.Models;
+using MyLeasing.Prism.Helpers;
 using Newtonsoft.Json;
+using Prism.Commands;
 using Prism.Navigation;
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -13,6 +14,7 @@ namespace MyLeasing.Prism.ViewModels
         private readonly INavigationService _navigationService;
         private OwnerResponse _owner;
         private ObservableCollection<PropertyItemViewModel> _properties;
+        private DelegateCommand _addPropertyCommand;
 
         public PropertiesPageViewModel(
             INavigationService navigationService) : base(navigationService)
@@ -22,12 +24,14 @@ namespace MyLeasing.Prism.ViewModels
             LoadOwner();
         }
 
+        public DelegateCommand AddPropertyCommand => _addPropertyCommand ?? (_addPropertyCommand = new DelegateCommand(AddPropertyAsync));
+
         public ObservableCollection<PropertyItemViewModel> Properties
         {
             get => _properties;
             set => SetProperty(ref _properties, value);
         }
-        
+
         private void LoadOwner()
         {
             _owner = JsonConvert.DeserializeObject<OwnerResponse>(Settings.Owner);
@@ -57,6 +61,18 @@ namespace MyLeasing.Prism.ViewModels
                 SquareMeters = p.SquareMeters,
                 Stratum = p.Stratum
             }).ToList());
+        }
+
+        private async void AddPropertyAsync()
+        {
+            if (_owner.RoleId != 1)
+            {
+                await App.Current.MainPage.DisplayAlert(
+                    Languages.Error, Languages.ErrorNoOwner, Languages.Accept);
+                return;
+            }
+
+            await _navigationService.NavigateAsync("EditPropertyPage");
         }
     }
 }

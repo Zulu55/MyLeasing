@@ -159,4 +159,97 @@
   <data name="Loging" xml:space="preserve">
     <value>Loging...</value>
   </data>
+  <data name="ErrorNoOwner" xml:space="preserve">
+    <value>You must be an owner to perfom this action.</value>
+  </data>
+  <data name="NewProperty" xml:space="preserve">
+    <value>New Property</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="EditProperty" xml:space="preserve">
+    <value>Edit Property</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Tap on image to change it.</value>
+  </data>
+  <data name="Neighborhood" xml:space="preserve">
+    <value>Neighborhood</value>
+  </data>
+  <data name="NeighborhoodError" xml:space="preserve">
+    <value>You must enter a Neighborhood</value>
+  </data>
+  <data name="NeighborhoodPlaceHolder" xml:space="preserve">
+    <value>Enter the property's neighborhood...</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PriceError" xml:space="preserve">
+    <value>Price Error</value>
+  </data>
+  <data name="PricePlaceHolder" xml:space="preserve">
+    <value>Enter price...</value>
+  </data>
+  <data name="SquareMeters" xml:space="preserve">
+    <value>Square Meters</value>
+  </data>
+  <data name="SquareMetersError" xml:space="preserve">
+    <value>Square Meters Error</value>
+  </data>
+  <data name="SquareMetersPlaceHolder" xml:space="preserve">
+    <value>Enter Square Meters ...</value>
+  </data>
+  <data name="Rooms" xml:space="preserve">
+    <value>Rooms</value>
+  </data>
+  <data name="RoomsError" xml:space="preserve">
+    <value>Rooms Error</value>
+  </data>
+  <data name="RoomsPlaceHolder" xml:space="preserve">
+    <value>Enter the rooms number...</value>
+  </data>
+  <data name="Stratum" xml:space="preserve">
+    <value>Stratum</value>
+  </data>
+  <data name="StratumError" xml:space="preserve">
+    <value>Stratum Error</value>
+  </data>
+  <data name="StratumPlaceHolder" xml:space="preserve">
+    <value>Select a stratum...</value>
+  </data>
+  <data name="PropertyType" xml:space="preserve">
+    <value>Property Type</value>
+  </data>
+  <data name="PropertyTypeError" xml:space="preserve">
+    <value>Property Type Error</value>
+  </data>
+  <data name="PropertyTypePlaceHolder" xml:space="preserve">
+    <value>Select a property type...</value>
+  </data>
+  <data name="HasParkingLot" xml:space="preserve">
+    <value>Has Parking Lot?</value>
+  </data>
+  <data name="IsAvailable" xml:space="preserve">
+    <value>Is Available? </value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Saving...</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AddressPlaceHolder" xml:space="preserve">
+    <value>Enter the property's Address...</value>
+  </data>
+  <data name="AddressError" xml:space="preserve">
+    <value>Address Error</value>
+  </data>
 </root>
