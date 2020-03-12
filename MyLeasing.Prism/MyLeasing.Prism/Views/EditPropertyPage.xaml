@@ -32,10 +32,14 @@
                         </ffimageloading:CachedImage.GestureRecognizers>
                     </ffimageloading:CachedImage>
 
-                   <Label
+                    <Label
             	        FontSize="Micro"
             	        HorizontalOptions="Center"
-            	        Text="{i18n:Translate ChangeImage}"/>
+            	        Text="{i18n:Translate ChangeImage}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
 
                     <Grid>
                         <Grid.ColumnDefinitions>

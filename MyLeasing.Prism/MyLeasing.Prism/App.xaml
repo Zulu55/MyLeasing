@@ -8,7 +8,7 @@
         <ResourceDictionary>
 
             <!-- Parameters -->
-            <x:String x:Key="UrlAPI">https://myleasing.azurewebsites.net/</x:String>
+            <x:String x:Key="UrlAPI">https://myleasingzulu.azurewebsites.net/</x:String>
 
             <!-- Colors -->
             <Color x:Key="colorBackgroud">#F2F2F2</Color>
